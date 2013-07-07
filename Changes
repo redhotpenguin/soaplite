@@ -1,7 +1,6 @@
 #
 # Revision history for Perl extension SOAP::Lite.
 #
-# $Id$
 
 The contents of this file provides a change history for the SOAP::Lite
 Perl module. New features are designated with a '+' and bug fixes with
