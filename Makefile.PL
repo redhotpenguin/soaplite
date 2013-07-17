@@ -182,10 +182,9 @@ ExtUtils::MakeMaker::WriteMakefile(
      (MIN_PERL_VERSION => 5.006,
       META_MERGE => {
           resources=> {
-              repository => 'https://soaplite.svn.sourceforge.net/svnroot/soaplite/branches/0.71',
+              repository => 'https://github.com/redhotpenguin/soaplite',
           },
           keywords => ['SOAP','SOAP client','SOAP server'],
-          bugtracker => 'https://sourceforge.net/tracker/?group_id=66000&atid=513017',
           
       },
      ) : ()),
