@@ -1163,7 +1163,7 @@ sub encode_object {
 
     if ($class !~ /^(?:SCALAR|ARRAY|HASH|REF)$/o) {
         # we could also check for CODE|GLOB|LVALUE, but we cannot serialize
-        # them anyway, so they'll be cought by check below
+        # them anyway, so they'll be caught by check below
         $class =~ s/::/__/g;
 
         $name = $class if !defined $name;
@@ -1231,7 +1231,7 @@ sub encode_array {
 
     # If typing is disabled, just serialize each of the array items
     # with no type information, each using the specified name,
-    # and do not crete a wrapper array tag.
+    # and do not create a wrapper array tag.
     if (!$self->autotype) {
         $name ||= gen_name;
         return map {$self->encode_object($_, $name)} @$array;
@@ -1539,7 +1539,7 @@ sub uriformethod {
     #        : uri
     #   b) attribute in Envelope element as xmlns= or xmlns:${prefix}=
     #   c) no prefix or prefix equal serializer->envprefix
-    #        ? '', but see coment below
+    #        ? '', but see comment below
     #        : die with error message
     my $uri = $method_is_data
         ? ref $_[0]->attr && ($_[0]->attr->{$prefix ? "xmlns:$prefix" : 'xmlns'} || $_[0]->uri)
@@ -2953,7 +2953,7 @@ my @list = qw(
 }
 
 sub defaultlog {
-    my $caller = (caller(1))[3]; # the 4th element returned by caller is the subroutine namea
+    my $caller = (caller(1))[3]; # the 4th element returned by caller is the subroutine name
     $caller = (caller(2))[3] if $caller =~ /eval/;
     chomp(my $msg = join ' ', @_);
     printf STDERR "%s: %s\n", $caller, $msg;
@@ -3275,7 +3275,7 @@ sub refresh_cache {
 
 sub load {
     my $self = shift->new;
-    local $^W; # supress warnings about redefining
+    local $^W; # suppress warnings about redefining
     foreach (keys %{$self->services || Carp::croak 'Nothing to load. Schema is not specified'}) {
         # TODO - check age of cached file, and delete if older than configured amount
         if ($self->cache_dir) {
@@ -3584,7 +3584,7 @@ sub import {
             SOAP::Trace->import(@parameters ? @parameters : 'all');
         }
         elsif ($command eq 'import') {
-            local $^W; # supress warnings about redefining
+            local $^W; # suppress warnings about redefining
             my $package = shift(@parameters);
             $package->export_to_level(1, undef, @parameters ? @parameters : ':all') if $package;
         }
@@ -3901,7 +3901,7 @@ SOAP::Lite 0.71 will be the last version of SOAP::Lite running on perl 5.005
 
 Future versions of SOAP::Lite will require at least perl 5.6.0
 
-If you have not had the time to upgrad your perl, you should consider this
+If you have not had the time to upgrade your perl, you should consider this
 now.
 
 =head1 OVERVIEW OF CLASSES AND PACKAGES
@@ -4769,7 +4769,7 @@ In our example, the rpc/encoded variant already used named parameters (by
 using two messages), so there's no difference at all.
 
 You may have noticed the somewhat strange idiom for passing a list of named
-paraneters in the rpc/literal example:
+parameters in the rpc/literal example:
 
  my $som = $soap->call('sayHello', SOAP::Data->name('parameters')->value(
     \SOAP::Data->value([
@@ -5156,7 +5156,7 @@ L<HTTP::Transport>.
 
 =head1 SECURITY
 
-For security reasons, the exisiting path for Perl modules (C<@INC>) will be
+For security reasons, the existing path for Perl modules (C<@INC>) will be
 disabled once you have chosen dynamic deployment and specified your own
 C<PATH/>. If you wish to access other modules in your included package you
 have several options:
@@ -5208,7 +5208,7 @@ qualified names for your return values. For example:
                    ->uri($MY_NAMESPACE)
                    ->value($output);
 
-In addition see comment about default incoding in .NET Web Services below.
+In addition see comment about default encoding in .NET Web Services below.
 
 =head2 SOAP::Lite client with a .NET server
 
@@ -5284,7 +5284,7 @@ C<use_prefix()> method. For example, the following code:
                    ->use_prefix(0)
                    ->myMethod();
 
-Will result in the following XML, which is more pallatable by .NET:
+Will result in the following XML, which is more palatable by .NET:
 
   <SOAP-ENV:Envelope ...attributes skipped>
     <SOAP-ENV:Body>
@@ -5398,7 +5398,7 @@ means fiddling with SOAP::Lite's internals - this may not work as
 expected in future versions.
 
 The example above forces everything to be encoded as string (this is because
-the string test is normally last and allways returns true):
+the string test is normally last and always returns true):
 
   my @list = qw(-1 45 foo bar 3838);
   my $proxy = SOAP::Lite->uri($uri)->proxy($proxyUrl);

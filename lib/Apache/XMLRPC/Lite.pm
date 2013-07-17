@@ -74,7 +74,7 @@ This Apache Perl module provides the ability to add support for XML-RPC
 protocol with easy configuration (either in .conf or in .htaccess file).
 This functionality should give you lightweight option
 for hosting SOAP services and greatly simplify configuration aspects. This
-module inherites functionality from XMLRPC::Transport::HTTP::Apache component
+module inherits functionality from XMLRPC::Transport::HTTP::Apache component
 of XMLRPC::Lite module.
 
 =head1 CONFIGURATION
