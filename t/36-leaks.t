@@ -62,17 +62,23 @@ plan tests => 16;
     ok(exists $calls{DESTROY}{$_});
   }
 
-  %calls = ();
-  {
-    local $SOAP::Constants::DO_NOT_USE_XML_PARSER = 1;
-    my $soap = SOAP::Lite
-      -> uri("Echo")
-      -> proxy($proxy)
-      -> echo;
-  }
-  foreach (keys %{$calls{new}}) {
-    print "XML::Parser::Lite: $_\n";
-    ok(exists $calls{DESTROY}{$_});
+
+  SKIP: {
+      eval "require XML::Parser::Lite; 1;";
+      skip "XML::Parser::Lite is required for this test", 8 if $@;
+
+      %calls = ();
+      {
+          local $SOAP::Constants::DO_NOT_USE_XML_PARSER = 1;
+          my $soap = SOAP::Lite
+          -> uri("Echo")
+          -> proxy($proxy)
+          -> echo;
+      }
+      foreach (keys %{$calls{new}}) {
+          print "XML::Parser::Lite: $_\n";
+          ok(exists $calls{DESTROY}{$_});
+      }
   }
 
   # SOAP::Lite->import(trace => '-objects');
