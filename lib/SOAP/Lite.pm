@@ -3260,7 +3260,7 @@ sub parse {
     my $self = shift;
     my $s = $self->deserializer->deserialize($self->access)->root;
     # here should be something that defines what schema description we want to use
-    $self->services({SOAP::Schema::WSDL->base($self->schema_url)->parse($s, @_)});
+    $self->services({SOAP::Schema::WSDL->base($self->schema_url)->useragent($self->useragent)->parse($s, @_)});
 }
 
 sub refresh_cache {
