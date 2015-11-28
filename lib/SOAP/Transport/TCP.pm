@@ -12,7 +12,7 @@ package SOAP::Transport::TCP;
 
 use strict;
 
-our $VERSION = 1.17;
+# VERSION
 
 use URI;
 use IO::Socket;
