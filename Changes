@@ -15,6 +15,7 @@ http://rt.cpan.org/Public/Dist/Display.html?Name=SOAP-Lite
 THIS RELEASE
 -----------------------------------------------------------------------
 
+    ! More thorough version corrections (@oeuftete)
     ! #106688 encode utf8 content in test which fails under RHES 6.6
 
 1.19 August 26, 2015

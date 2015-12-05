@@ -11,7 +11,7 @@ package SOAP::Packager;
 use strict;
 use vars;
 
-our $VERSION = 1.17;
+# VERSION
 our $SUPPORTED_TYPES = { };
 
 sub BEGIN {
