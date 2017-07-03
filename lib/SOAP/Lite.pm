@@ -3412,6 +3412,7 @@ EOP
     my $namespaces = $self->deserializer->ids->[1];
     foreach my $key (keys %{$namespaces}) {
         my ($ns,$prefix) = SOAP::Utils::splitqname($key);
+        next if $namespaces->{$key} eq 'http://schemas.xmlsoap.org/wsdl/soap/';  #WAO 
         $self->{'_stub'} .= '  $self->serializer->register_ns("'.$namespaces->{$key}.'","'.$prefix.'");'."\n"
             if (defined $ns && ($ns eq "xmlns"));
     }
