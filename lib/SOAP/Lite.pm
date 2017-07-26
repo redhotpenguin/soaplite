@@ -4127,7 +4127,7 @@ the specified WSDL schema and uses it as the basis for generating stubs.
 When set to a true value, the raw XML is returned by the call to a remote
 method.
 
-The default is to return the a L<SOAP::SOM> object (false).
+The default is to return a L<SOAP::SOM> object (false).
 
 =item autotype(boolean)
 
