@@ -806,7 +806,7 @@ sub new {
     } => $class;
     $self->typelookup({
            'base64Binary' =>
-              [10, sub {$_[0] =~ /[^\x09\x0a\x0d\x20-\x7f]/ }, 'as_base64Binary'],
+              [10, sub {!utf8::is_utf8($_[0]) && $_[0] =~ /[^\x09\x0a\x0d\x20-\x7f]/ }, 'as_base64Binary'],
            'zerostring' =>
                [12, sub { $_[0] =~ /^0\d+$/ }, 'as_string'],
             # int (and actually long too) are subtle: the negative range is one greater...
