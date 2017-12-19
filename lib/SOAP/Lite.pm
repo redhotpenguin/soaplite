@@ -4161,7 +4161,7 @@ The default is to not send any additional characters.
 
 Allows for the setting of arbitrary attributes on the header object. Keep in mind the requirement that
  any attributes not natively known to SOAP must be namespace-qualified.
-If using $session->call ($method, $callData, $callHeader), SOAP::Lite serializes the informations as
+If using $session->call ($method, $callData, $callHeader), SOAP::Lite serializes information as
 
   <soap:Envelope>
     <soap:Header>
