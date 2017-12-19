@@ -3524,7 +3524,7 @@ use SOAP::Lite::Utils;
 use SOAP::Constants;
 use SOAP::Packager;
 
-use Scalar::Util qw(weaken blessed);
+use Scalar::Util qw(weaken blessed reftype);
 
 @ISA = qw(SOAP::Cloneable);
 
@@ -3853,7 +3853,6 @@ sub call {
                 my($value) = $_->value; # take first value
 
                 # fillup parameters
-                use Scalar::Util 'reftype';
                 if ( reftype( $_[$param] ) ) {
                     if ( reftype( $_[$param] ) eq 'SCALAR' ) {
                         ${ $_[$param] } = $$value;
