@@ -2,6 +2,8 @@ NAME
     SOAP::Lite - Perl's Web Services Toolkit
 
 DESCRIPTION
+    HEY THERE - THIS REPO HAS MOVED HERE - https://github.com/redhotpenguin/perl-soaplite
+
     SOAP::Lite is a collection of Perl modules which provides a simple and
     lightweight interface to the Simple Object Access Protocol (SOAP) both
     on client and server side.
