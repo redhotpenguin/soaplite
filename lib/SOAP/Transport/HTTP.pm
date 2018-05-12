@@ -493,6 +493,11 @@ sub make_response {
       && ( $self->options->{compress_threshold} || 0 ) <
       SOAP::Utils::bytelength $response;
 
+    if ($] > 5.007 && $encoding) {
+        require Encode;
+        $response = Encode::encode( $encoding, $response );
+    }
+
     $response = Compress::Zlib::compress($response) if $compressed;
 
 # this next line does not look like a good test to see if something is multipart
@@ -512,9 +517,7 @@ sub make_response {
                       && $encoding ? 'charset=' . lc($encoding) : () ),
                 'Content-Length' => SOAP::Utils::bytelength $response
             ),
-            ( $] > 5.007 )
-            ? do { require Encode; Encode::encode( $encoding, $response ) }
-            : $response,
+            $response,
         ) );
 
     $self->response->headers->header( 'Content-Type' =>
