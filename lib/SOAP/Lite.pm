@@ -3176,8 +3176,9 @@ FAKE
                     $services{$opername} = {}; # should be initialized in 5.7 and after
                     my $soapaction = $_->operation->soapAction;
                     my $invocationStyle = $_->operation->style || $default_style || "rpc";
-                    my $encodingStyle = $_->input->body->use || "encoded";
-                    my $namespace = $_->input->body->namespace || $tns;
+                    my $inpBody = $_->input->body;
+                    my $encodingStyle = $inpBody ? $inpBody->use || "encoded" : "encoded";
+                    my $namespace = $inpBody ? $inpBody->namespace || $tns : $tns;
                     my @parts;
                     foreach ($s->portType) {
                         next unless $_->name eq $porttype;
