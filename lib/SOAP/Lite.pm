@@ -3334,6 +3334,13 @@ sub access {
     $req->proxy_authorization_basic($ENV{'HTTP_proxy_user'}, $ENV{'HTTP_proxy_pass'})
         if ($ENV{'HTTP_proxy_user'} && $ENV{'HTTP_proxy_pass'});
 
+    if(UNIVERSAL::can('SOAP::Transport::HTTP::Client', 'get_basic_credentials')) {
+        my ($http_user, $http_pass) = SOAP::Transport::HTTP::Client::get_basic_credentials();
+        if ($http_user && $http_pass) { 
+            $req->authorization_basic( $http_user, $http_pass); 
+        }
+    }
+
     my $resp = $self->useragent->request($req);
     $resp->is_success ? $resp->content : die "Service description '$url' can't be loaded: ",  $resp->status_line, "\n";
 }
