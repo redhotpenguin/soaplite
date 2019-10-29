@@ -377,7 +377,7 @@ sub new {
     return $self;
 }
 
-sub BEGIN {
+BEGIN {
     no strict 'refs';
     for my $method (qw(request response)) {
         my $field = '_' . $method;
