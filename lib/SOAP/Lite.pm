@@ -522,7 +522,7 @@ sub stringify {
     return join ': ', $self->faultcode, $self->faultstring;
 }
 
-sub BEGIN {
+BEGIN {
     no strict 'refs';
     for my $method (qw(faultcode faultstring faultactor faultdetail)) {
         my $field = '_' . $method;
@@ -756,7 +756,7 @@ BEGIN {
     sub prefix { $prefix =~ s/^[^\-]+-/$_[1]-/; $_[0]; }
 }
 
-sub BEGIN {
+BEGIN {
     no strict 'refs';
 
     __PACKAGE__->__mk_accessors(qw(readable level seen autotype attr maptype
@@ -1840,7 +1840,7 @@ package SOAP::SOM;
 use Carp ();
 use SOAP::Lite::Utils;
 
-sub BEGIN {
+BEGIN {
     no strict 'refs';
     my %path = (
         root        => '/',
@@ -2074,7 +2074,7 @@ use URI::Escape qw{uri_unescape};
 
 sub DESTROY { SOAP::Trace::objects('()') }
 
-sub BEGIN {
+BEGIN {
     __PACKAGE__->__mk_accessors( qw(ids hrefs parts parser
         base xmlschemas xmlschema context) );
 }
@@ -2481,7 +2481,7 @@ package SOAP::Client;
 use SOAP::Lite::Utils;
 
 # VERSION
-sub BEGIN {
+BEGIN {
     __PACKAGE__->__mk_accessors(qw(endpoint code message
         is_success status options));
 }
@@ -2665,7 +2665,7 @@ sub init_context {
     weaken($self->{'_serializer'}->{'_context'});
 }
 
-sub BEGIN {
+BEGIN {
     no strict 'refs';
     for my $method (qw(serializer deserializer transport)) {
         my $field = '_' . $method;
@@ -3022,7 +3022,7 @@ sub _compileit {
     };
 }
 
-sub BEGIN { foreach (qw(name type import use)) { _compileit($_) } }
+BEGIN { foreach (qw(name type import use)) { _compileit($_) } }
 
 sub AUTOLOAD {
     my $method = substr($AUTOLOAD, rindex($AUTOLOAD, '::') + 2);
@@ -3265,7 +3265,7 @@ sub schema {
     return shift->schema_url(@_);
 }
 
-sub BEGIN {
+BEGIN {
     no strict 'refs';
     for my $method (qw(deserializer schema_url services useragent stub cache_dir cache_ttl)) {
         my $field = '_' . $method;
@@ -3424,7 +3424,7 @@ EOP
     UNIVERSAL::isa($som => 'SOAP::SOM') ? wantarray ? $som->paramsall : $som->result : $som;
 }
 
-sub BEGIN {
+BEGIN {
     no strict 'refs';
     for my $method (qw(want_som)) {
         my $field = '_' . $method;
@@ -3686,7 +3686,7 @@ sub schema {
     }
 }
 
-sub BEGIN {
+BEGIN {
     no strict 'refs';
     for my $method (qw(serializer deserializer)) {
         my $field = '_' . $method;

@@ -14,7 +14,7 @@ use vars;
 # VERSION
 our $SUPPORTED_TYPES = { };
 
-sub BEGIN {
+BEGIN {
   no strict 'refs';
   for my $method ( qw(parser headers_http persist_parts) ) {
     my $field = '_' . $method;
@@ -82,7 +82,7 @@ use strict;
 use vars qw(@ISA);
 @ISA = qw(SOAP::Packager);
 
-sub BEGIN {
+BEGIN {
   no strict 'refs';
   for my $method ( qw(transfer_encoding env_id env_location) ) {
     my $field = '_' . $method;
@@ -263,7 +263,7 @@ use strict;
 use vars qw(@ISA);
 @ISA = qw(SOAP::Packager);
 
-sub BEGIN {
+BEGIN {
   no strict 'refs';
   for my $method ( qw(foo) ) {
     my $field = '_' . $method;
