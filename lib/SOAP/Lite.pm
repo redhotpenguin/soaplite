@@ -3176,8 +3176,9 @@ FAKE
                     $services{$opername} = {}; # should be initialized in 5.7 and after
                     my $soapaction = $_->operation->soapAction;
                     my $invocationStyle = $_->operation->style || $default_style || "rpc";
-                    my $encodingStyle = $_->input->body->use || "encoded";
-                    my $namespace = $_->input->body->namespace || $tns;
+                    my $inpBody = $_->input->body;
+                    my $encodingStyle = $inpBody ? $inpBody->use || "encoded" : "encoded";
+                    my $namespace = $inpBody ? $inpBody->namespace || $tns : $tns;
                     my @parts;
                     foreach ($s->portType) {
                         next unless $_->name eq $porttype;
@@ -3332,6 +3333,13 @@ sub access {
     my $req = HTTP::Request->new(GET => $url);
     $req->proxy_authorization_basic($ENV{'HTTP_proxy_user'}, $ENV{'HTTP_proxy_pass'})
         if ($ENV{'HTTP_proxy_user'} && $ENV{'HTTP_proxy_pass'});
+
+    if(UNIVERSAL::can('SOAP::Transport::HTTP::Client', 'get_basic_credentials')) {
+        my ($http_user, $http_pass) = SOAP::Transport::HTTP::Client::get_basic_credentials();
+        if ($http_user && $http_pass) { 
+            $req->authorization_basic( $http_user, $http_pass); 
+        }
+    }
 
     my $resp = $self->useragent->request($req);
     $resp->is_success ? $resp->content : die "Service description '$url' can't be loaded: ",  $resp->status_line, "\n";
